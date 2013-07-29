@@ -53,6 +53,7 @@ public class QuickSettingsUtil {
     public static final String TILE_NETWORKMODE = "toggleNetworkMode";
     public static final String TILE_AUTOROTATE = "toggleAutoRotate";
     public static final String TILE_AIRPLANE = "toggleAirplane";
+    public static final String TILE_TORCH = "toggleFlashlight";
     public static final String TILE_SLEEP = "toggleSleepMode";
     public static final String TILE_LTE = "toggleLte";
 
@@ -114,6 +115,9 @@ public class QuickSettingsUtil {
         TILES.put(TILE_SYNC, new QuickSettingsUtil.TileInfo(
                 TILE_SYNC, R.string.title_tile_sync,
                 "com.android.systemui:drawable/ic_qs_sync_off"));
+        TILES.put(TILE_TORCH, new QuickSettingsUtil.TileInfo(
+                TILE_TORCH, R.string.title_tile_torch,
+                "com.android.systemui:drawable/ic_qs_torch_off"));
         TILES.put(TILE_USER, new QuickSettingsUtil.TileInfo(
                 TILE_USER, R.string.title_tile_user,
                 "com.android.systemui:drawable/ic_qs_default_user"));
