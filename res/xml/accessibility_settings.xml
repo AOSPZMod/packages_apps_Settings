@@ -27,6 +27,21 @@
             android:key="system_category"
             android:title="@string/accessibility_system_title">
 
+      <Preference
+                android:title="@string/accessibility_clock_title"
+                >
+
+  		<intent
+                android:action="android.intent.action.MAIN"
+                android:targetClass="com.cyanogenmod.lockclock.preference.Preferences"
+                android:targetPackage="com.cyanogenmod.lockclock" />
+      </Preference>
+      
+		<PreferenceScreen
+            android:key="quick_settings_panel"
+            android:fragment="com.android.settings.slim.quicksettings.QuickSettings"
+            android:title="@string/quick_settings_panel_title" />
+		
         <PreferenceScreen
             android:fragment="com.android.settings.AccessibilitySettings$ToggleScreenMagnificationPreferenceFragment"
             android:key="screen_magnification_preference_screen"
