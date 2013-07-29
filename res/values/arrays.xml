@@ -930,6 +930,17 @@
         <item>2</item>
     </string-array>
 
+    <string-array name="entries_network_widget">
+        <item>2G/3G+2G</item> 
+        <item>2G/3G Only</item> 
+        <item>2G/3G Only/3G+2G</item>
+    </string-array>
+
+    <string-array name="values_network_widget" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        
     <string-array name="entries_ring_widget" translatable="false">
         <item>@string/cm_sound_mode_silent</item>
         <item>@string/cm_sound_mode_vibrate</item>

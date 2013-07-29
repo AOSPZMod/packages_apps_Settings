@@ -4548,7 +4548,7 @@
     <string name="notification_widgets">Widgets</string>
 
     <!-- Quick settings panel -->
-    <string name="quick_settings_panel_title">Quick Settings</string>
+    <string name="quick_settings_panel_title">Quick Settings panel</string>
     <string name="quick_settings_title">Quick Settings</string>
     <string name="title_static_tiles">Static tiles</string>
     <string name="tile_picker_title">Tiles and layout</string>
@@ -4564,10 +4564,8 @@
     <string name="title_tile_flashlight">LED flashlight</string>
     <string name="title_tile_lockscreen">Lock screen</string>
     <string name="title_tile_lte">LTE</string>
-    <string name="title_tile_media_play_pause">Media: Play/Pause</string>
-    <string name="title_tile_media_next">Media: Skip to Next</string>
-    <string name="title_tile_media_previous">Media: Skip to Previous</string>
     <string name="title_tile_mobiledata">Mobile data</string>
+    <string name="title_tile_profile">Profile</string>
     <string name="title_tile_autorotate">Orientation</string>
     <string name="title_tile_settings">Settings</string>
     <string name="title_tile_screentimeout">Screen timeout</string>
@@ -4577,7 +4575,7 @@
     <string name="title_tile_wifi">Wi-Fi</string>
     <string name="title_tile_wimax">WiMAX</string>
     <string name="title_tile_user">User switcher</string>
-    <string name="title_tile_networkmode">2G/3G</string>
+    <string name="title_tile_networkmode">Network mode</string>
 
     <string name="title_dynamic_tiles">Dynamic tiles</string>
     <string name="dynamic_tiles_note_title">Note</string>
@@ -4597,7 +4595,7 @@
     <string name="tiles_reset_title">Reset</string>
     <string name="tiles_reset_message">Restore the default displayed tiles and layout?</string>
 
-     <!-- Notification light dialogs -->
+    <!-- Notification light dialogs -->
     <string name="edit_light_settings">Edit light settings</string>
     <string name="pulse_speed_title">Pulse length and speed</string>
     <string name="picker_arrow">→</string>
