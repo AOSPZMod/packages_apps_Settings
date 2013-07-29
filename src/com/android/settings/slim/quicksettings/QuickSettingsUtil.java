@@ -99,6 +99,9 @@ public class QuickSettingsUtil {
         TILES.put(TILE_MOBILENETWORK, new QuickSettingsUtil.TileInfo(
                 TILE_MOBILENETWORK, R.string.title_tile_mobilenetwork,
                 "com.android.systemui:drawable/ic_qs_signal_4"));
+        TILES.put(TILE_NETWORKMODE, new QuickSettingsUtil.TileInfo(
+                TILE_NETWORKMODE, R.string.title_tile_networkmode,
+                "com.android.systemui:drawable/ic_qs_2g3g_on"));
         TILES.put(TILE_AUTOROTATE, new QuickSettingsUtil.TileInfo(
                 TILE_AUTOROTATE, R.string.title_tile_autorotate,
                 "com.android.systemui:drawable/ic_qs_auto_rotate"));
@@ -108,18 +111,15 @@ public class QuickSettingsUtil {
         TILES.put(TILE_SOUND, new QuickSettingsUtil.TileInfo(
                 TILE_SOUND, R.string.title_tile_sound,
                 "com.android.systemui:drawable/ic_qs_ring_on"));
+        TILES.put(TILE_USER, new QuickSettingsUtil.TileInfo(
+                TILE_USER, R.string.title_tile_user,
+                "com.android.systemui:drawable/ic_qs_default_user"));
         TILES.put(TILE_WIFI, new QuickSettingsUtil.TileInfo(
                 TILE_WIFI, R.string.title_tile_wifi,
                 "com.android.systemui:drawable/ic_qs_wifi_4"));
         TILES.put(TILE_WIFIAP, new QuickSettingsUtil.TileInfo(
                 TILE_WIFIAP, R.string.title_tile_wifiap,
                 "com.android.systemui:drawable/ic_qs_wifi_ap_neutral"));
-        TILES.put(TILE_USER, new QuickSettingsUtil.TileInfo(
-                TILE_USER, R.string.title_tile_user,
-                "com.android.systemui:drawable/ic_qs_default_user"));
-        TILES.put(TILE_NETWORKMODE, new QuickSettingsUtil.TileInfo(
-                TILE_NETWORKMODE, R.string.title_tile_networkmode,
-                "com.android.systemui:drawable/ic_qs_2g3g_on"));
 
     }
 
