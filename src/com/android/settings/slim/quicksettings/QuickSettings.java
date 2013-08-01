@@ -116,6 +116,10 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
 
         // Don't show mobile data options if not supported
         boolean isMobileData = pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
+
+		// AOSP no support change network mode
+        prefSet.removePreference(mNetworkMode);
+
         if (!isMobileData) {
             QuickSettingsUtil.TILES.remove(QuickSettingsUtil.TILE_MOBILEDATA);
             QuickSettingsUtil.TILES.remove(QuickSettingsUtil.TILE_MOBILENETWORK);
