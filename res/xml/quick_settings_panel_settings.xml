@@ -46,8 +46,8 @@
 
         <ListPreference
             android:key="pref_network_mode"
-            android:dialogTitle="@string/pref_network_mode_title"
-            android:title="@string/pref_network_mode_title"
+            android:dialogTitle="@string/title_tile_mobilenetwork"
+            android:title="@string/title_tile_mobilenetwork"
             android:entries="@array/entries_network_widget"
             android:entryValues="@array/values_network_widget" />
 
