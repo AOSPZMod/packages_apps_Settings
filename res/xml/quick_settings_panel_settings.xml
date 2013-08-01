@@ -49,7 +49,9 @@
             android:dialogTitle="@string/title_tile_mobilenetwork"
             android:title="@string/title_tile_mobilenetwork"
             android:entries="@array/entries_network_widget"
-            android:entryValues="@array/values_network_widget" />
+            android:entryValues="@array/values_network_widget"
+            android:visibility="gone"  
+            />
 
         <MultiSelectListPreference
             android:key="pref_ring_mode"

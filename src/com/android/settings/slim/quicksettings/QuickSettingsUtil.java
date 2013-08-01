@@ -120,9 +120,9 @@ public class QuickSettingsUtil {
         TILES.put(TILE_SYNC, new QuickSettingsUtil.TileInfo(
                 TILE_SYNC, R.string.title_tile_sync,
                 "com.android.systemui:drawable/ic_qs_sync_off", true));
-        TILES.put(TILE_TORCH, new QuickSettingsUtil.TileInfo(
-                TILE_TORCH, R.string.title_tile_torch,
-                "com.android.systemui:drawable/ic_qs_torch_off", true));
+        //TILES.put(TILE_TORCH, new QuickSettingsUtil.TileInfo(
+        //        TILE_TORCH, R.string.title_tile_torch,
+        //        "com.android.systemui:drawable/ic_qs_torch_off", true));
         TILES.put(TILE_USER, new QuickSettingsUtil.TileInfo(
                 TILE_USER, R.string.title_tile_user,
                 "com.android.systemui:drawable/ic_qs_default_user", true));
