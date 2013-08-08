@@ -49,7 +49,6 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
 
     private static final String SEPARATOR = "OV=I=XseparatorX=I=VO";
     private static final String EXP_RING_MODE = "pref_ring_mode";
-    private static final String EXP_NETWORK_MODE = "pref_network_mode";
     private static final String DYNAMIC_ALARM = "dynamic_alarm";
     private static final String DYNAMIC_BUGREPORT = "dynamic_bugreport";
     private static final String DYNAMIC_IME = "dynamic_ime";
@@ -58,7 +57,6 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
     private static final String COLLAPSE_PANEL = "collapse_panel";
 
     MultiSelectListPreference mRingMode;
-    ListPreference mNetworkMode;
     CheckBoxPreference mDynamicAlarm;
     CheckBoxPreference mDynamicBugReport;
     CheckBoxPreference mDynamicWifi;
@@ -99,11 +97,6 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
         }
         mRingMode.setOnPreferenceChangeListener(this);
 
-        // Add the network mode preference
-        mNetworkMode = (ListPreference) prefSet.findPreference(EXP_NETWORK_MODE);
-        mNetworkMode.setSummary(mNetworkMode.getEntry());
-        mNetworkMode.setOnPreferenceChangeListener(this);
-
         // Add the dynamic tiles checkboxes
         mDynamicAlarm = (CheckBoxPreference) prefSet.findPreference(DYNAMIC_ALARM);
         mDynamicAlarm.setChecked(Settings.System.getInt(resolver, Settings.System.QS_DYNAMIC_ALARM, 1) == 1);
@@ -117,15 +110,11 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
         // Don't show mobile data options if not supported
         boolean isMobileData = pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
 
-		// AOSP no support change network mode
-        prefSet.removePreference(mNetworkMode);
-
         if (!isMobileData) {
             QuickSettingsUtil.TILES.remove(QuickSettingsUtil.TILE_MOBILEDATA);
             QuickSettingsUtil.TILES.remove(QuickSettingsUtil.TILE_MOBILENETWORK);
             QuickSettingsUtil.TILES.remove(QuickSettingsUtil.TILE_WIFIAP);
             QuickSettingsUtil.TILES.remove(QuickSettingsUtil.TILE_NETWORKMODE);
-            prefSet.removePreference(mNetworkMode);
         } else {
             // We have telephony support however, some phones run on networks not supported
             // by the networkmode tile so remove both it and the associated options list
@@ -147,7 +136,6 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
                     break;
                 default:
                     QuickSettingsUtil.TILES.remove(QuickSettingsUtil.TILE_NETWORKMODE);
-                    prefSet.removePreference(mNetworkMode);
                     break;
             }
         }
@@ -215,13 +203,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
             Settings.System.putString(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.EXPANDED_RING_MODE, TextUtils.join(SEPARATOR, arrValue));
             updateSummary(TextUtils.join(SEPARATOR, arrValue), mRingMode, R.string.pref_ring_mode_summary);
-        } else if (preference == mNetworkMode) {
-            int value = Integer.valueOf((String) newValue);
-            int index = mNetworkMode.findIndexOfValue((String) newValue);
-            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.EXPANDED_NETWORK_MODE, value);
-            mNetworkMode.setSummary(mNetworkMode.getEntries()[index]);
-        }
+    	}
         return true;
     }
 
