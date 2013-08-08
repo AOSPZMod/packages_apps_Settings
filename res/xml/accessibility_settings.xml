@@ -37,7 +37,7 @@
                 android:targetPackage="com.cyanogenmod.lockclock" />
       </Preference>
       
-		<PreferenceScreen
+	<PreferenceScreen
             android:key="quick_settings_panel"
             android:fragment="com.android.settings.slim.quicksettings.QuickSettings"
             android:title="@string/quick_settings_panel_title" />
@@ -47,6 +47,16 @@
             android:key="screen_magnification_preference_screen"
             android:title="@string/accessibility_screen_magnification_title"/>
 
+          <CheckBoxPreference
+                android:key="extra_crt"
+                android:title="@string/accessibility_toggle_crt_title"
+                />
+		
+	  <CheckBoxPreference
+                android:key="extra_volume_wake"
+                android:title="@string/accessibility_toggle_volume_wake_title"
+                />	
+            
         <CheckBoxPreference
                 android:key="toggle_large_text_preference"
                 android:title="@string/accessibility_toggle_large_text_preference_title"
