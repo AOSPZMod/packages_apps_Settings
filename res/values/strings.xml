@@ -4720,6 +4720,6 @@
     
     <!-- Ext.  Accessibility -->
     <string name="accessibility_clock_title">cLock</string>
-    <string name="accessibility_toggle_crt_title">Disable CRT effect</string>
+    <string name="accessibility_toggle_crt_title">Enable CRT effect</string>
     <string name="accessibility_toggle_volume_wake_title">Enable Volume wake</string>
 </resources>
