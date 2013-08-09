@@ -51,11 +51,6 @@
                 android:key="extra_crt"
                 android:title="@string/accessibility_toggle_crt_title"
                 />
-		
-	  <CheckBoxPreference
-                android:key="extra_volume_wake"
-                android:title="@string/accessibility_toggle_volume_wake_title"
-                />	
             
         <CheckBoxPreference
                 android:key="toggle_large_text_preference"

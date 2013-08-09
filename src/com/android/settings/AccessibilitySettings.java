@@ -127,7 +127,6 @@ public class AccessibilitySettings extends SettingsPreferenceFragment implements
     private static final String EXTRA_SETTINGS_COMPONENT_NAME = "settings_component_name";
     
     private static final String EXTRA_CRT = "extra_crt";
-    private static final String EXTRA_VOLUME_WAKE = "extra_volume_wake";
 
     // Dialog IDs.
     private static final int DIALOG_ID_NO_ACCESSIBILITY_SERVICES = 1;
@@ -185,7 +184,6 @@ public class AccessibilitySettings extends SettingsPreferenceFragment implements
     private PreferenceScreen mGlobalGesturePreferenceScreen;
 
     private CheckBoxPreference mToggleCrt;
-    private CheckBoxPreference mToggleVolumeWake;
     
     private int mLongPressTimeoutDefault;
 
@@ -241,9 +239,6 @@ public class AccessibilitySettings extends SettingsPreferenceFragment implements
             return true;
         } else if (mToggleCrt == preference) {
             Settings.System.putInt(getContentResolver(),Settings.System.SYSTEM_POWER_ENABLE_CRT_OFF, mToggleCrt.isChecked() ? 1 : 0 );
-            return true;
-        } else if (mToggleVolumeWake == preference) {
-	    Settings.System.putInt(getContentResolver(),Settings.System.VOLUME_WAKE_SCREEN, mToggleCrt.isChecked() ? 1 : 0 );
             return true;
         } else if (mToggleLockScreenRotationPreference == preference) {
             handleLockScreenRotationPreferenceClick();
@@ -331,10 +326,7 @@ public class AccessibilitySettings extends SettingsPreferenceFragment implements
         
         mToggleCrt = (CheckBoxPreference) findPreference(EXTRA_CRT);  
         mToggleCrt.setChecked(  (Settings.System.getInt(getContentResolver(),Settings.System.SYSTEM_POWER_ENABLE_CRT_OFF, 0 ) == 1) );
-        
-        mToggleVolumeWake = (CheckBoxPreference) findPreference(EXTRA_VOLUME_WAKE);
-        mToggleVolumeWake.setChecked(  (Settings.System.getInt(getContentResolver(),Settings.System.VOLUME_WAKE_SCREEN, 0 ) == 1) );
-        
+       
         // Lock screen rotation.
         mToggleLockScreenRotationPreference =
                 (CheckBoxPreference) findPreference(TOGGLE_LOCK_SCREEN_ROTATION_PREFERENCE);
