@@ -1149,7 +1149,7 @@ public class ManageApplications extends Fragment implements
                         mIPm.resetPreferredActivities(UserHandle.myUserId());
                     } catch (RemoteException e) {
                     }
-                    aom.resetAllModes();
+                    //aom.resetAllModes();
                     final int[] restrictedUids = npm.getUidsWithPolicy(
                             POLICY_REJECT_METERED_BACKGROUND);
                     final int currentUserId = ActivityManager.getCurrentUser();
