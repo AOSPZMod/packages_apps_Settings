@@ -944,8 +944,8 @@ public class ManageApplications extends Fragment implements
     public void onResume() {
         super.onResume();
         mActivityResumed = true;
-        updateNumTabs();
         updateCurrentTab(mViewPager.getCurrentItem());
+        updateNumTabs();
         updateOptionsMenu();
     }
 

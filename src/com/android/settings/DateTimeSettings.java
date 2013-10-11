@@ -35,12 +35,18 @@ import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
+import android.text.BidiFormatter;
+import android.text.TextDirectionHeuristics;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
+import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.TimeZone;
 
 public class DateTimeSettings extends SettingsPreferenceFragment
@@ -181,7 +187,7 @@ public class DateTimeSettings extends SettingsPreferenceFragment
         mDummyDate.set(now.get(Calendar.YEAR), 11, 31, 13, 0, 0);
         Date dummyDate = mDummyDate.getTime();
         mTimePref.setSummary(DateFormat.getTimeFormat(getActivity()).format(now.getTime()));
-        mTimeZone.setSummary(getTimeZoneText(now.getTimeZone()));
+        mTimeZone.setSummary(getTimeZoneText(now.getTimeZone(), true));
         mDatePref.setSummary(shortDateFormat.format(now.getTime()));
         mDateFormat.setSummary(shortDateFormat.format(dummyDate));
         mTime24Pref.setSummary(DateFormat.getTimeFormat(getActivity()).format(dummyDate));
@@ -233,44 +239,38 @@ public class DateTimeSettings extends SettingsPreferenceFragment
 
     @Override
     public Dialog onCreateDialog(int id) {
-        Dialog d;
-
+        final Calendar calendar = Calendar.getInstance();
         switch (id) {
-        case DIALOG_DATEPICKER: {
-            final Calendar calendar = Calendar.getInstance();
-            d = new DatePickerDialog(
-                getActivity(),
-                this,
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH));
-            // The system clock can't represent dates outside this range.
-            DatePickerDialog datePicker = (DatePickerDialog)d;
-            Calendar t = Calendar.getInstance();
-            t.clear();
-            t.set(1970, Calendar.JANUARY, 1);
-            datePicker.getDatePicker().setMinDate(t.getTimeInMillis());
-            t.clear();
-            t.set(2037, Calendar.DECEMBER, 31);
-            datePicker.getDatePicker().setMaxDate(t.getTimeInMillis());
-            break;
-        }
-        case DIALOG_TIMEPICKER: {
-            final Calendar calendar = Calendar.getInstance();
-            d = new TimePickerDialog(
+        case DIALOG_DATEPICKER:
+            DatePickerDialog d = new DatePickerDialog(
+                    getActivity(),
+                    this,
+                    calendar.get(Calendar.YEAR),
+                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.DAY_OF_MONTH));
+            configureDatePicker(d.getDatePicker());
+            return d;
+        case DIALOG_TIMEPICKER:
+            return new TimePickerDialog(
                     getActivity(),
                     this,
                     calendar.get(Calendar.HOUR_OF_DAY),
                     calendar.get(Calendar.MINUTE),
                     DateFormat.is24HourFormat(getActivity()));
-            break;
-        }
         default:
-            d = null;
-            break;
+            throw new IllegalArgumentException();
         }
+    }
 
-        return d;
+    static void configureDatePicker(DatePicker datePicker) {
+        // The system clock can't represent dates outside this range.
+        Calendar t = Calendar.getInstance();
+        t.clear();
+        t.set(1970, Calendar.JANUARY, 1);
+        datePicker.setMinDate(t.getTimeInMillis());
+        t.clear();
+        t.set(2037, Calendar.DECEMBER, 31);
+        datePicker.setMaxDate(t.getTimeInMillis());
     }
 
     /*
@@ -378,40 +378,32 @@ public class DateTimeSettings extends SettingsPreferenceFragment
         }
     }
 
-    /*  Helper routines to format timezone */
-
-    /* package */ static String getTimeZoneText(TimeZone tz) {
-        // Similar to new SimpleDateFormat("'GMT'Z, zzzz").format(new Date()), but
-        // we want "GMT-03:00" rather than "GMT-0300".
+    public static String getTimeZoneText(TimeZone tz, boolean includeName) {
         Date now = new Date();
-        return formatOffset(new StringBuilder(), tz, now).
-            append(", ").
-            append(tz.getDisplayName(tz.inDaylightTime(now), TimeZone.LONG)).toString();
-    }
 
-    private static StringBuilder formatOffset(StringBuilder sb, TimeZone tz, Date d) {
-        int off = tz.getOffset(d.getTime()) / 1000 / 60;
+        // Use SimpleDateFormat to format the GMT+00:00 string.
+        SimpleDateFormat gmtFormatter = new SimpleDateFormat("ZZZZ");
+        gmtFormatter.setTimeZone(tz);
+        String gmtString = gmtFormatter.format(now);
 
-        sb.append("GMT");
-        if (off < 0) {
-            sb.append('-');
-            off = -off;
-        } else {
-            sb.append('+');
+        // Ensure that the "GMT+" stays with the "00:00" even if the digits are RTL.
+        BidiFormatter bidiFormatter = BidiFormatter.getInstance();
+        Locale l = Locale.getDefault();
+        boolean isRtl = TextUtils.getLayoutDirectionFromLocale(l) == View.LAYOUT_DIRECTION_RTL;
+        gmtString = bidiFormatter.unicodeWrap(gmtString,
+                isRtl ? TextDirectionHeuristics.RTL : TextDirectionHeuristics.LTR);
+
+        if (!includeName) {
+            return gmtString;
         }
 
-        int hours = off / 60;
-        int minutes = off % 60;
+        // Optionally append the time zone name.
+        SimpleDateFormat zoneNameFormatter = new SimpleDateFormat("zzzz");
+        zoneNameFormatter.setTimeZone(tz);
+        String zoneNameString = zoneNameFormatter.format(now);
 
-        sb.append((char) ('0' + hours / 10));
-        sb.append((char) ('0' + hours % 10));
-
-        sb.append(':');
-
-        sb.append((char) ('0' + minutes / 10));
-        sb.append((char) ('0' + minutes % 10));
-
-        return sb;
+        // We don't use punctuation here to avoid having to worry about localizing that too!
+        return gmtString + " " + zoneNameString;
     }
 
     private BroadcastReceiver mIntentReceiver = new BroadcastReceiver() {
