@@ -4734,7 +4734,7 @@
     <string name="cm_sound_mode_soundVibrate">Sound + Vibrate</string>
     
     <!-- Ext.  Accessibility -->
-    <string name="accessibility_clock_title">cLock</string>
     <string name="accessibility_toggle_crt_title">Enable CRT effect</string>
     <string name="accessibility_toggle_volume_wake_title">Enable Volume wake</string>
+    <string name="accessibility_toggle_battery_title">Enable battery text only</string>
 </resources>
