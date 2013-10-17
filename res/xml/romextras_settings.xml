@@ -30,7 +30,7 @@
                 android:title="@string/accessibility_toggle_battery_title" />
 
         <net.margaritov.preference.colorpicker.ColorPickerPreference
-                android:key="status_bar_color"
+                android:key="extra_statusbar_color"
                 android:title="@string/status_bar_color_title"
                 android:defaultValue="0xFFFFFFFF"
                 alphaSlider="true" />
