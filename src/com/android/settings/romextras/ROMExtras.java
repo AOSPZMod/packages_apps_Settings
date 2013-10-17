@@ -18,6 +18,7 @@ package com.android.settings.romextras;
 
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceScreen;
@@ -31,9 +32,11 @@ public class ROMExtras extends SettingsPreferenceFragment implements OnPreferenc
 
     private static final String EXTRA_CRT = "extra_crt";
     private static final String EXTRA_BATTERY_TEXT = "extra_battery_text";
+    private static final String MEDIA_SCANNER_ON_BOOT = "media_scanner_on_boot";
 
     private CheckBoxPreference mToggleCrt;
     private CheckBoxPreference mToggleBatteryText;
+    private ListPreference mMSOB;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,10 @@ public class ROMExtras extends SettingsPreferenceFragment implements OnPreferenc
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+        if (preference == mMSOB) {
+            writeMSOBOptions(newValue);
+            return true;
+        }
         return true;
     }
 
@@ -62,6 +69,30 @@ public class ROMExtras extends SettingsPreferenceFragment implements OnPreferenc
 
         mToggleBatteryText = (CheckBoxPreference) findPreference(EXTRA_BATTERY_TEXT );
         mToggleBatteryText.setChecked(  (Settings.System.getInt(getContentResolver(),Settings.System.STATUSBAR_BATTERY_ICON, 1 ) == 1) );
+
+        mMSOB = (ListPreference) findPreference(MEDIA_SCANNER_ON_BOOT);
+        updateMSOBOptions();
+        mMSOB.setOnPreferenceChangeListener(this);
+    }
+
+
+    private void resetMSOBOptions() {
+        Settings.System.putInt(getActivity().getContentResolver(),
+                Settings.System.MEDIA_SCANNER_ON_BOOT, 0);
+    }
+
+    private void writeMSOBOptions(Object newValue) {
+        Settings.System.putInt(getActivity().getContentResolver(),
+                Settings.System.MEDIA_SCANNER_ON_BOOT,
+                Integer.valueOf((String) newValue));
+        updateMSOBOptions();
+    }
+
+    private void updateMSOBOptions() {
+        int value = Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.MEDIA_SCANNER_ON_BOOT, 0);
+        mMSOB.setValue(String.valueOf(value));
+        mMSOB.setSummary(mMSOB.getEntry());
     }
 
 

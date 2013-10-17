@@ -23,13 +23,20 @@
             android:key="quick_settings_panel"
             android:fragment="com.android.settings.romextras.quicksettings.QuickSettings"
             android:title="@string/quick_settings_panel_title" />
-		
-        <CheckBoxPreference
-                android:key="extra_crt"
-                android:title="@string/accessibility_toggle_crt_title" />
 
-        <CheckBoxPreference
-                android:key="extra_battery_text"
-                android:title="@string/accessibility_toggle_battery_title" />
+    <ListPreference
+            android:key="media_scanner_on_boot"
+            android:title="@string/media_scanner_on_boot_title"
+            android:persistent="false"
+            android:entries="@array/media_scanner_on_boot_entries"
+            android:entryValues="@array/media_scanner_on_boot_values" />
+
+    <CheckBoxPreference
+            android:key="extra_crt"
+            android:title="@string/accessibility_toggle_crt_title" />
+
+    <CheckBoxPreference
+            android:key="extra_battery_text"
+            android:title="@string/accessibility_toggle_battery_title" />
 
  </PreferenceScreen>
