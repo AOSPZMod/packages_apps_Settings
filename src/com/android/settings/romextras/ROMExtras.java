@@ -1,0 +1,68 @@
+/*
+ * Copyright (C) 2013 The AOSPZ Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.android.settings.romextras;
+
+import android.os.Bundle;
+import android.preference.CheckBoxPreference;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.PreferenceScreen;
+import android.provider.Settings;
+
+import com.android.settings.R;
+import com.android.settings.SettingsPreferenceFragment;
+
+
+public class ROMExtras extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
+
+    private static final String EXTRA_CRT = "extra_crt";
+    private static final String EXTRA_BATTERY_TEXT = "extra_battery_text";
+
+    private CheckBoxPreference mToggleCrt;
+    private CheckBoxPreference mToggleBatteryText;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        addPreferencesFromResource(R.xml.romextras_settings);
+        initializeAllPreferences();
+    }
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        if (mToggleCrt == preference) {
+            Settings.System.putInt(getContentResolver(),Settings.System.SYSTEM_POWER_ENABLE_CRT_OFF, mToggleCrt.isChecked() ? 1 : 0 );
+            return true;
+        } else if (mToggleBatteryText == preference) {
+            Settings.System.putInt(getContentResolver(),Settings.System.STATUSBAR_BATTERY_ICON, mToggleBatteryText.isChecked() ? 1 : 0 );
+            return true;
+        }
+        return super.onPreferenceTreeClick(preferenceScreen, preference);
+    }
+
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        return true;
+    }
+
+    private void initializeAllPreferences() {
+        mToggleCrt = (CheckBoxPreference) findPreference(EXTRA_CRT);
+        mToggleCrt.setChecked(  (Settings.System.getInt(getContentResolver(),Settings.System.SYSTEM_POWER_ENABLE_CRT_OFF, 0 ) == 1) );
+
+        mToggleBatteryText = (CheckBoxPreference) findPreference(EXTRA_BATTERY_TEXT );
+        mToggleBatteryText.setChecked(  (Settings.System.getInt(getContentResolver(),Settings.System.STATUSBAR_BATTERY_ICON, 1 ) == 1) );
+    }
+
+
+}

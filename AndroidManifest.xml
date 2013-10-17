@@ -1493,11 +1493,10 @@
             android:theme="@style/CryptKeeperBlankTheme"
         />
 
-        <!-- extra activities start -->
-        <activity android:name=".romextra.InterfaceSettings" />
-
-        <activity android:name=".romextra.NotificationDrawerSettings" />
-        <activity android:name=".romextra.quicksettings.QuickSettings" />
+        <!-- extras activities start -->
+        <activity android:name=".romextras.ROMExtras" />
+        <activity android:name=".romextras.NotificationDrawerSettings" />
+        <activity android:name=".romextras.quicksettings.QuickSettings" />
 
         <!-- Pseudo-activity used to provide an intent-filter entry point to encryption settings -->
         <activity android:name="Settings$CryptKeeperSettingsActivity"
