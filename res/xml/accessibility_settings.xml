@@ -37,16 +37,6 @@
             android:key="screen_magnification_preference_screen"
             android:title="@string/accessibility_screen_magnification_title"/>
 
-          <CheckBoxPreference
-                android:key="extra_crt"
-                android:title="@string/accessibility_toggle_crt_title"
-                />
-
-          <CheckBoxPreference
-                android:key="extra_battery_text"
-                android:title="@string/accessibility_toggle_battery_title"
-           />
-            
         <CheckBoxPreference
                 android:key="toggle_large_text_preference"
                 android:title="@string/accessibility_toggle_large_text_preference_title"

@@ -21,7 +21,7 @@
       
 	<PreferenceScreen
             android:key="quick_settings_panel"
-            android:fragment="com.android.settings.romextra.quicksettings.QuickSettings"
+            android:fragment="com.android.settings.romextras.quicksettings.QuickSettings"
             android:title="@string/quick_settings_panel_title" />
 		
         <CheckBoxPreference
