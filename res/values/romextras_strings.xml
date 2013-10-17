@@ -206,6 +206,7 @@
 
     <string name="extra_statubar_title">Statusbar</string>
     <string name="extra_misc_title">Misc</string>
+    <string name="status_bar_color_title">Statusbar Color</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>
