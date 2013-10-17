@@ -1494,10 +1494,10 @@
         />
 
         <!-- extra activities start -->
-        <activity android:name=".slim.InterfaceSettings" />
+        <activity android:name=".romextra.InterfaceSettings" />
 
-        <activity android:name=".slim.NotificationDrawerSettings" />
-        <activity android:name=".slim.quicksettings.QuickSettings" />
+        <activity android:name=".romextra.NotificationDrawerSettings" />
+        <activity android:name=".romextra.quicksettings.QuickSettings" />
 
         <!-- Pseudo-activity used to provide an intent-filter entry point to encryption settings -->
         <activity android:name="Settings$CryptKeeperSettingsActivity"

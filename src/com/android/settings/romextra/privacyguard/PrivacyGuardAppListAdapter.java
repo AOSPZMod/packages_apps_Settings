@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.cyanogenmod.privacyguard;
+package com.android.settings.romextra.privacyguard;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -28,7 +28,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.settings.R;
-import com.android.settings.cyanogenmod.privacyguard.PrivacyGuardManager.AppInfo;
+import com.android.settings.romextra.privacyguard.PrivacyGuardManager.AppInfo;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;

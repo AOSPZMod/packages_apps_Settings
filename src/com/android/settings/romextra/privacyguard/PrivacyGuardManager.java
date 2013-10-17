@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.cyanogenmod.privacyguard;
+package com.android.settings.romextra.privacyguard;
 
 import android.app.Activity;
 import android.app.AlertDialog;
