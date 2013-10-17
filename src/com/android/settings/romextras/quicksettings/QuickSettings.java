@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.romextra.quicksettings;
+package com.android.settings.romextras.quicksettings;
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.ContentResolver;

@@ -316,14 +316,7 @@ public class AccessibilitySettings extends SettingsPreferenceFragment implements
                 || !Utils.isVoiceCapable(getActivity())) {
             mSystemsCategory.removePreference(mTogglePowerButtonEndsCallPreference);
         }
-        
-        mToggleCrt = (CheckBoxPreference) findPreference(EXTRA_CRT);  
-        mToggleCrt.setChecked(  (Settings.System.getInt(getContentResolver(),Settings.System.SYSTEM_POWER_ENABLE_CRT_OFF, 0 ) == 1) );
 
- 		mToggleBatteryText = (CheckBoxPreference) findPreference(EXTRA_BATTERY_TEXT );  
-        mToggleBatteryText.setChecked(  (Settings.System.getInt(getContentResolver(),Settings.System.STATUSBAR_BATTERY_ICON, 1 ) == 1) );
-       
-       
         // Lock screen rotation.
         mToggleLockScreenRotationPreference =
                 (CheckBoxPreference) findPreference(TOGGLE_LOCK_SCREEN_ROTATION_PREFERENCE);
