@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.slim.quicksettings;
+package com.android.settings.romextras.quicksettings;
 
 import com.android.internal.telephony.PhoneConstants;
 import com.android.settings.R;

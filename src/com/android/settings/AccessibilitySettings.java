@@ -125,10 +125,7 @@ public class AccessibilitySettings extends SettingsPreferenceFragment implements
     private static final String EXTRA_SETTINGS_TITLE = "settings_title";
     private static final String EXTRA_COMPONENT_NAME = "component_name";
     private static final String EXTRA_SETTINGS_COMPONENT_NAME = "settings_component_name";
-    
-    private static final String EXTRA_CRT = "extra_crt";
-	private static final String EXTRA_BATTERY_TEXT = "extra_battery_text";
-	
+
     // Dialog IDs.
     private static final int DIALOG_ID_NO_ACCESSIBILITY_SERVICES = 1;
 
@@ -184,9 +181,6 @@ public class AccessibilitySettings extends SettingsPreferenceFragment implements
     private PreferenceScreen mDisplayMagnificationPreferenceScreen;
     private PreferenceScreen mGlobalGesturePreferenceScreen;
 
-    private CheckBoxPreference mToggleCrt;
-    private CheckBoxPreference mToggleBatteryText;
-    
     private int mLongPressTimeoutDefault;
 
     @Override
@@ -238,12 +232,6 @@ public class AccessibilitySettings extends SettingsPreferenceFragment implements
             return true;
         } else if (mTogglePowerButtonEndsCallPreference == preference) {
             handleTogglePowerButtonEndsCallPreferenceClick();
-            return true;
-        } else if (mToggleCrt == preference) {
-            Settings.System.putInt(getContentResolver(),Settings.System.SYSTEM_POWER_ENABLE_CRT_OFF, mToggleCrt.isChecked() ? 1 : 0 );
-            return true;
-        } else if (mToggleBatteryText == preference) {
-            Settings.System.putInt(getContentResolver(),Settings.System.STATUSBAR_BATTERY_ICON, mToggleBatteryText.isChecked() ? 1 : 0 );
             return true;
         } else if (mToggleLockScreenRotationPreference == preference) {
             handleLockScreenRotationPreferenceClick();
@@ -328,14 +316,7 @@ public class AccessibilitySettings extends SettingsPreferenceFragment implements
                 || !Utils.isVoiceCapable(getActivity())) {
             mSystemsCategory.removePreference(mTogglePowerButtonEndsCallPreference);
         }
-        
-        mToggleCrt = (CheckBoxPreference) findPreference(EXTRA_CRT);  
-        mToggleCrt.setChecked(  (Settings.System.getInt(getContentResolver(),Settings.System.SYSTEM_POWER_ENABLE_CRT_OFF, 0 ) == 1) );
 
- 		mToggleBatteryText = (CheckBoxPreference) findPreference(EXTRA_BATTERY_TEXT );  
-        mToggleBatteryText.setChecked(  (Settings.System.getInt(getContentResolver(),Settings.System.STATUSBAR_BATTERY_ICON, 1 ) == 1) );
-       
-       
         // Lock screen rotation.
         mToggleLockScreenRotationPreference =
                 (CheckBoxPreference) findPreference(TOGGLE_LOCK_SCREEN_ROTATION_PREFERENCE);

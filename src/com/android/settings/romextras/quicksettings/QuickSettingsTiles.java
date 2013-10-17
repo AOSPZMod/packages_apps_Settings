@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.slim.quicksettings;
+package com.android.settings.romextras.quicksettings;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -37,7 +37,7 @@ import android.widget.TextView;
 
 import com.android.settings.R;
 import com.android.settings.Utils;
-import com.android.settings.slim.quicksettings.QuickSettingsUtil.TileInfo;
+import com.android.settings.romextras.quicksettings.QuickSettingsUtil.TileInfo;
 
 import java.util.ArrayList;
 public class QuickSettingsTiles extends Fragment {

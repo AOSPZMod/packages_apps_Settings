@@ -28,25 +28,15 @@
             android:title="@string/accessibility_system_title">
       
 	<PreferenceScreen
-            android:key="quick_settings_panel"
-            android:fragment="com.android.settings.slim.quicksettings.QuickSettings"
-            android:title="@string/quick_settings_panel_title" />
+            android:key="romextras_settings"
+            android:fragment="com.android.settings.romextras.ROMExtras"
+            android:title="@string/romextras_title" />
 		
         <PreferenceScreen
             android:fragment="com.android.settings.AccessibilitySettings$ToggleScreenMagnificationPreferenceFragment"
             android:key="screen_magnification_preference_screen"
             android:title="@string/accessibility_screen_magnification_title"/>
 
-          <CheckBoxPreference
-                android:key="extra_crt"
-                android:title="@string/accessibility_toggle_crt_title"
-                />
-
-          <CheckBoxPreference
-                android:key="extra_battery_text"
-                android:title="@string/accessibility_toggle_battery_title"
-           />
-            
         <CheckBoxPreference
                 android:key="toggle_large_text_preference"
                 android:title="@string/accessibility_toggle_large_text_preference_title"
