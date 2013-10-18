@@ -92,12 +92,6 @@ public class ROMExtras extends SettingsPreferenceFragment implements OnPreferenc
         mStatusBarColor.setOnPreferenceChangeListener(this);
     }
 
-
-    private void resetMSOBOptions() {
-        Settings.System.putInt(getActivity().getContentResolver(),
-                Settings.System.MEDIA_SCANNER_ON_BOOT, 0);
-    }
-
     private void writeMSOBOptions(Object newValue) {
         Settings.System.putInt(getActivity().getContentResolver(),
                 Settings.System.MEDIA_SCANNER_ON_BOOT,
