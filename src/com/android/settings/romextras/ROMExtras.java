@@ -26,6 +26,7 @@ import android.provider.Settings;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.romextras.utils.Helpers;
 
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
@@ -71,6 +72,7 @@ public class ROMExtras extends SettingsPreferenceFragment implements OnPreferenc
             int intHex = ColorPickerPreference.convertToColorInt(hex);
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.STATUSBAR_COLOR, intHex);
+            Helpers.restartSystemUI();
             return true;
         }
 
